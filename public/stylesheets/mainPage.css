@@ -1,0 +1,21 @@
+#container{
+    width: 100%;
+}
+
+#categoriesMenu{
+    display: block;
+    width: 20%;
+    height: 45vw;
+    background-color: coral;
+    border: solid 1px black;
+    float: left;
+}
+
+#mainContent{
+    display: block;
+    width: 80%;
+    border: solid 1px black;
+    background-color: darkcyan;
+    height: 45vw;
+
+}

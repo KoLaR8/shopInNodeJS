@@ -1,0 +1,37 @@
+extends layout
+block content
+    div(class="loginPanel" id="loginPanel")
+        form(action="/login" method="POST")
+            label Already have an account? LOG IN
+            br
+            label(id="loginNameLabel" for="login") Login:
+            br
+            input(type="text" id="login")
+            br
+            label(id="loginPasswordLabel" for="password") Password:
+            br
+            input(type="password" id="password")
+            br
+            input(type="submit" id="loginButton" value="LOG IN")
+
+    div(class="loginPanel" id="registerPage")
+        form
+            label Don't have account yet? SIGN UP
+            br
+            label(id="RegisterNameLabel" for="Rlogin") Login:
+            br
+            input(type="text" id="Rlogin")
+            br
+            label(id="RegisterMailLabel" for="Rmail") e-mail:
+            br
+            input(type="text" id="Rmail")
+            br
+            label(id="RegisterPasswordLabel" for="Rpassword") Enter Password:
+            br
+            input(type="password" id="Rpassword")
+            br
+            label(id="RegisterPasswordLabel2" for="Rpassword2") Enter Password again:
+            br
+            input(type="password" id="Rpassword2")
+            br
+            input(type="submit" id="RegisterButton" value="SIGN UP")
