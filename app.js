@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var employeeRouter = require('./routes/employees');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
 
@@ -26,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', (req, res, next) => {
 
   console.log(req.cookies)
-  if(req.cookies['session'] != undefined){
+  if(req.cookies['session'] !== undefined){
+    console.log(req.cookies)
     req.is_authorized = true;
   }
   else{
@@ -36,8 +38,10 @@ app.use('/', (req, res, next) => {
 })
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/employees', employeeRouter )
-app.use('/login', loginRouter )
+app.use('/employees', employeeRouter );
+app.use('/login', loginRouter );
+app.use('/logout', logoutRouter );
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -6,16 +6,16 @@ block content
             br
             label(id="loginNameLabel" for="login") Login:
             br
-            input(type="text" id="login")
+            input(type="text" id="login" name="login")
             br
             label(id="loginPasswordLabel" for="password") Password:
             br
-            input(type="password" id="password")
+            input(type="password" id="password" name="password")
             br
             input(type="submit" id="loginButton" value="LOG IN")
 
     div(class="loginPanel" id="registerPage")
-        form
+        form(action="/register" method="POST")
             label Don't have account yet? SIGN UP
             br
             label(id="RegisterNameLabel" for="Rlogin") Login:

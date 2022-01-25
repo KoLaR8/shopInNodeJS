@@ -1,33 +1,57 @@
 var express = require('express');
 var router = express.Router();
-var uuid = require('uuid')
+var uuid = require('uuid');
+var sqlite3 = require('sqlite3');
+var mysql = require('mysql');
 
-var date = new Date();date.setTime(Date.now() + 1000*360);
-/* GET home page. */
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'shopWWW'
+})
+
+/* GET login page. */
 router.get('/', function(req, res, next) {
-    res.cookie("session", uuid.v4(),
-        {
+    res.render('login', {
+        originalUrl: req.originalUrl
+    });
+});
+
+
+connection.connect();
+let login;
+let password;
+
+
+router.post("/", (req, res, next) => {
+    connection.query("SELECT user_id, login, password FROM USERS", (err, rows, fields) => {
+        if (err) throw err;
+
+        login = rows[0].login;
+        password = rows[0].password;
+        postLogin = req.body.login
+        postPassword = req.body.password
+        if(login === postLogin && password === postPassword){
+            res.cookie("session", uuid.v4(),
+                {
                     secure: false,
                     httpOnly: false,
                     sameSite: false,
                     path: '/',
-        });
-    res.render('login');
-});
+                    userID: req.body.userID,
+                    is_authorized: true
+                });
+            res.render('loggedUser', {session: true});
+        }
+        else{
+            res.send('/index')
+        }
+    })
 
-router.post("/", (req, res, next) => {
-    const user_login = req.body.login;
-    const user_password = req.body.password
-
-    console.log(`Proba zalogowania ${user_login} z hasłem ${user_password}`)
 })
 router.get('/noacess', (req, res, next) => {
     res.send("Musisz być zalogowany, żeby zobaczyć ten zasób")
 })
 
-router.get('/logout', (req, res, next) => {
-    res.clearCookie('session')
-
-    res.send("Zostałeś wylogowany")
-})
 module.exports = router;
