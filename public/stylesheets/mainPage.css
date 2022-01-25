@@ -1,21 +1,20 @@
 #container{
-    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 70%;
+    grid-template-rows: auto;
+    grid-gap: 3%;
+    padding: 2%;
 }
 
 #categoriesMenu{
     display: block;
-    width: 20%;
-    height: 45vw;
-    background-color: coral;
     border: solid 1px black;
     float: left;
+    overflow: auto;
 }
 
 #mainContent{
     display: block;
-    width: 80%;
     border: solid 1px black;
-    background-color: darkcyan;
-    height: 45vw;
 
 }
