@@ -1,6 +1,7 @@
 extends layout
 block content
     div(class="loginPanel" id="loginPanel")
+
         form(action="/login" method="POST")
             label Already have an account? LOG IN
             br
@@ -13,25 +14,26 @@ block content
             input(type="password" id="password" name="password")
             br
             input(type="submit" id="loginButton" value="LOG IN")
-
+            br
+            message=message
     div(class="loginPanel" id="registerPage")
         form(action="/register" method="POST")
             label Don't have account yet? SIGN UP
             br
             label(id="RegisterNameLabel" for="Rlogin") Login:
             br
-            input(type="text" id="Rlogin")
+            input(type="text" id="Rlogin" name="Rlogin")
             br
             label(id="RegisterMailLabel" for="Rmail") e-mail:
             br
-            input(type="text" id="Rmail")
+            input(type="text" id="Rmail" name="Rmail")
             br
             label(id="RegisterPasswordLabel" for="Rpassword") Enter Password:
             br
-            input(type="password" id="Rpassword")
+            input(type="password" id="Rpassword" name ="Rpassword")
             br
             label(id="RegisterPasswordLabel2" for="Rpassword2") Enter Password again:
             br
-            input(type="password" id="Rpassword2")
+            input(type="password" id="Rpassword2" name="Rpassword2")
             br
             input(type="submit" id="RegisterButton" value="SIGN UP")

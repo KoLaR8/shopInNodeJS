@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 /* GET login page. */
 router.get('/', function(req, res, next) {
     res.render('login', {
-        originalUrl: req.originalUrl
+        message: ""
     });
 });
 
@@ -25,7 +25,7 @@ let password;
 
 
 router.post("/", (req, res, next) => {
-    connection.query("SELECT user_id, login, password FROM USERS", (err, rows, fields) => {
+    connection.query(`SELECT user_id, login, password FROM USERS WHERE login = '${req.body.login}'`, (err, rows, fields) => {
         if (err) throw err;
 
         login = rows[0].login;
@@ -45,7 +45,7 @@ router.post("/", (req, res, next) => {
             res.render('loggedUser', {session: true});
         }
         else{
-            res.send('/index')
+            res.render('login' ,{message: "login or password is incorrect!"})
         }
     })
 
