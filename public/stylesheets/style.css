@@ -45,6 +45,13 @@ body {
   color: black;
 }
 
+#wrongPassword{
+  width: 100%;
+  color: red;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
 #menu{
   background-color: midnightblue;
   position: sticky;

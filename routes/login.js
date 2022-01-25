@@ -45,7 +45,7 @@ router.post("/", (req, res, next) => {
             res.render('loggedUser', {session: true});
         }
         else{
-            res.render('login' ,{message: "login or password is incorrect!"})
+            res.render('login' ,{message: "login or password is incorrect! Please try again. "})
         }
     })
 
