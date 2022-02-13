@@ -8,7 +8,6 @@
 
 #categoriesMenu{
     display: block;
-    border: solid 1px black;
     overflow: auto;
     color: black;
 }
@@ -43,7 +42,36 @@
     cursor: pointer;
 }
 
+.productContainer{
+
+}
 .productPrice{
-    margin-top: 50px;
-    text-align: right;
+    font-size: x-large;
+}
+
+.productOldPrice{
+    font-size: large;
+    color: red;
+    text-decoration: line-through;
+}
+
+.productName{
+}
+.images{
+    height: 200px;
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.categoryName{
+    border: solid 0.4px grey;
+    border-radius: 15px;
+    text-align: center;
+    height: 75px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.categoryName:hover{
+    background-color: cornflowerblue;
 }

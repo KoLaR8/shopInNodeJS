@@ -13,12 +13,12 @@ var connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var sql = "SELECT name, price, image, category_id FROM products; SELECT name FROM categories";
+  var sql = "SELECT name, price, old, image, category_id FROM products; SELECT name FROM categories";
 
-  connection.query(sql, [2,1], (error, results, fields) =>{
+  connection.query(sql, [2,1], (error, results) =>{
     if(error) throw error;
     res.render('index', {categories: results[1], products: results[0]})
-    console.log(results[0])
+    console.log(results[0].old)
   })
 });
 
