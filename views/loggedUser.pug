@@ -1,13 +1,19 @@
 extends loggedLayout
+
 block content
-    div(id="container")
-        div(id="categoriesMenu")
+    div#container
+        div#categoriesMenu
             ol
-                li
-                    p
-        div(id="mainContent")
+                each val in categories
+                    li
+                        div.categoryName
+                            p #{val.name}
+        div#mainContent
             ul
-                li
-                    div
-                        p(class="productName")
-                        p(class="productPrice")
+                each val in products
+                    li
+                        div.productContainer
+                            img(src="data:image/jpg;base64," + val.image class="images")
+                            p.productName #{val.name}
+                            p.productOldPrice #{val.old}
+                            p.productPrice #{val.price} zł

@@ -25,15 +25,17 @@ let login;
 let password;
 
 
-router.post("/", (req, res, next) => {
-    connection.query(`SELECT user_id, login, password FROM USERS WHERE login = '${req.body.login}'`, (err, rows, fields) => {
-        if (err) throw err;
-
-        login = rows[0].login;
-        password = rows[0].password;
-        postLogin = req.body.login
-        postPassword = req.body.password
+router.post("/", (req, res) => {
+    connection.query(`SELECT user_id, login, password FROM USERS WHERE login = '${req.body.login}'; SELECT name, price, old, image, category_id FROM products; SELECT name FROM categories`,[3,1], (error, results, fields) =>{
+        if (error) throw error;
+        let result = JSON.parse(JSON.stringify(results));
+        console.log(result[2][0].name);
+        login = result[0][0].login;
+        password = result[0][0].password;
+        postLogin = req.body.login;
+        postPassword = req.body.password;
         if(login === postLogin && password === postPassword){
+            console.log("it's correct")
             res.cookie("session", uuid.v4(),
                 {
                     secure: false,
@@ -43,14 +45,14 @@ router.post("/", (req, res, next) => {
                     userID: req.body.userID,
                     is_authorized: true
                 });
-
+            res.render("loggedUser", {products: result[1], categories: result[2]})
         }
         else{
-            res.render('login' ,{message: "login or password is incorrect! Please try again. "})
+           res.render('login' ,{message: "login or password is incorrect! Please try again. "});
         }
     })
 
-})
+});
 router.get('/noacess', (req, res, next) => {
     res.send("Musisz być zalogowany, żeby zobaczyć ten zasób")
 })

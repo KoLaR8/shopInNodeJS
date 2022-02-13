@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
   connection.query(sql, [2,1], (error, results) =>{
     if(error) throw error;
     res.render('index', {categories: results[1], products: results[0]})
-    console.log(results[0].old)
   })
 });
 
