@@ -8,7 +8,8 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'shopWWW'
+    database: 'shopWWW',
+    multipleStatements: true
 })
 
 /* GET login page. */
@@ -42,7 +43,7 @@ router.post("/", (req, res, next) => {
                     userID: req.body.userID,
                     is_authorized: true
                 });
-            res.render('loggedUser', {session: true});
+            res.redirect('loggedUser', {session: true})
         }
         else{
             res.render('login' ,{message: "login or password is incorrect! Please try again. "})

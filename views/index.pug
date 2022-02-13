@@ -3,10 +3,15 @@ extends layout
 block content
   div(id="container")
     div(id="categoriesMenu")
-      ol Kategorie
-        li laptopy
-        li peryferia
+      ol
+        each val in categories
+          li
+            p #{val.name}
     div(id="mainContent")
       ul
-        each val in data
-          li #{val.name}
+        each val in products
+          li
+            div
+              img(src="data:image/jpg;base64," + val.image width="360px", height="300px")
+              p(class="productName") #{val.name}
+              p(class="productPrice") #{val.price}
