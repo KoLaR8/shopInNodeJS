@@ -7,7 +7,7 @@ block content
         each val in categories
           li
             div.categoryName
-              p #{val.name}
+              a(href= '/products/' + val.name style="color:black") #{val.name}
     div#mainContent
       ul
         each val in products
