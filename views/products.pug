@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    div#productInfo
+        p #{products.name}
+        p #{products.old}
+        p #{products.price}
+        p #{products.description}
+        img(src="data:image/jpg;base64," + products.image)

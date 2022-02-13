@@ -1,20 +1,31 @@
 doctype html
+
+script.
+  var value = ""
+  function render() {
+    document.body.innerHTML = myTemplate({value: value});
+  }
+  document.getElementById('glass').addEventListener('click', function () {
+    value = document.getElementById('searchBar').value;
+    console.log(value)
+    render();
+  }, false);
 html
   head
     title= "mainpage"
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/mainPage.css')
-    script(src='javascripts/search.js')
+
   body
     nav(id="menu")
       ul
         li
-          a(href=`/`) SHOP
+          a(href=`/`) SKLEP
         li
-          form(action="" method="GET" class="form")
-            input(type="text" id="searchBar" placeholder="wyszukaj swój produkt...")
-            button(type="submit" class="search-button" onclick="search()")
-              img(src='images/search.png' alt='search')
+          form(action="/search/" method="GET" class="form")
+            input(type="text" id="searchBar" placeholder="wyszukaj swój produkt..." name="search")
+            button(type = "submit" class="search-button")
+              img(src='../images/search.png' alt='search' id="glass")
         li
-          a(href=`/login`) LOGIN
+          a(href=`/login`) ZALOGUJ
       block content

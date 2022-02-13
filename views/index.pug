@@ -6,14 +6,16 @@ block content
       ol
         each val in categories
           li
-            div.categoryName
-              a(href= '/products/' + val.name style="color:black") #{val.name}
+            a(href= '/filters/' + val.name style="color:black; font-size: large;")
+              div.categoryName #{val.name}
+
     div#mainContent
       ul
         each val in products
           li
-            div.productContainer
-              img(src="data:image/jpg;base64," + val.image class="images")
-              p.productName #{val.name}
-              p.productOldPrice #{val.old}
-              p.productPrice #{val.price} zł
+            a(href= '/products/' + val.product_id style="color:black; font-size: large;")
+              div.productContainer
+                img(src="data:image/jpg;base64," + val.image class="images")
+                p.productName #{val.name}
+                p.productOldPrice #{val.old}
+                p.productPrice #{val.price} zł

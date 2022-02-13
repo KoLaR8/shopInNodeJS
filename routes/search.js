@@ -12,13 +12,14 @@ var connection = mysql.createConnection({
 })
 
 /* GET home page. */
-router.get('/:productName', function(req, res, next) {
-    var sql = `SELECT name, price, category_id FROM products WHERE name LIKE %${req.params.body}; SELECT name FROM categories`;
-
-    connection.query(sql, [2,1], (error, results) =>{
-        if(error) throw error;
-        res.render('index', {categories: results[1], products: results[0]})
-    })
+router.post('/value', function(req, res, next) {
+    console.log("hello")
+    // var sql = `SELECT name, price, category_id FROM products WHERE name LIKE '%${req.query.search}'; SELECT name FROM categories`;
+    //
+    // connection.query(sql, [2,1], (error, results) =>{
+    //     if(error) throw error;
+    //     res.render('index', {categories: results[1], products: results[0]})
+    // })
 });
 
 module.exports = router;
