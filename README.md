@@ -1,6 +1,6 @@
 # shopInNodeJS
 
-1. run
+1. run:
 npm start
 
 2. database:
