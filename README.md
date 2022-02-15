@@ -7,7 +7,7 @@ mysql
 (modules needed: Apache, mysql -> admin)
 (create database, import shopwww.sql from root directory)
 
-3. host:
+3. url:
 localhost:3000/
 
 4. run:
