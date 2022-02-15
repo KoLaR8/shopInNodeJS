@@ -1,19 +1,20 @@
 extends loggedLayout
-
 block content
     div#container
         div#categoriesMenu
             ol
                 each val in categories
                     li
-                        div.categoryName
-                            p #{val.name}
+                        a(href= '/loggedFilters/' + val.name style="color:black;")
+                            div.categoryName #{val.name}
+
         div#mainContent
             ul
                 each val in products
                     li
-                        div.productContainer
-                            img(src="data:image/jpg;base64," + val.image class="images")
-                            p.productName #{val.name}
-                            p.productOldPrice #{val.old}
-                            p.productPrice #{val.price} zł
+                        a(href= '/loggedProducts/' + val.product_id style="color:black;")
+                            div.productContainer
+                                img(src="data:image/jpg;base64," + val.image class="images")
+                                p.productName #{val.name}
+                                p.productOldPrice #{val.old}
+                                p.productPrice #{val.price} zł

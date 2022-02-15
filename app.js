@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
-var employeeRouter = require('./routes/employees');
+var loggedIndexRouter = require('./routes/loggedUser');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
@@ -14,6 +14,8 @@ var registerRouter = require('./routes/register');
 var searchRouter = require('./routes/search');
 var filtersRouter = require('./routes/filters');
 var productsRouter = require('./routes/products');
+var loggedproductsRouter = require('./routes/loggedProducts');
+var loggedfiltersRouter = require('./routes/loggedFilters');
 
 var app = express();
 
@@ -41,14 +43,16 @@ app.use('/', (req, res, next) => {
   next();
 })
 app.use('/', indexRouter);
+app.use('/loggedUser', loggedIndexRouter);
 app.use('/users', usersRouter);
-app.use('/employees', employeeRouter );
 app.use('/login', loginRouter );
 app.use('/logout', logoutRouter );
 app.use('/register', registerRouter );
 app.use('/search', searchRouter );
 app.use('/filters', filtersRouter );
 app.use('/products', productsRouter );
+app.use('/loggedProducts', loggedproductsRouter );
+app.use('/loggedFilters', loggedfiltersRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

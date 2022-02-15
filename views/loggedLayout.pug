@@ -4,17 +4,20 @@ html
         title= "mainpage"
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/stylesheets/mainPage.css')
+        link(rel='stylesheet', href='/stylesheets/products.css')
 
     body
-        nav(id="menu")
+        nav(id="Loggedmenu")
             ul
                 li
-                    a(href=`#`) SHOP
+                    a(href=`/loggedUser`) SKLEP
                 li
-                    form(action="" method="GET" class="form")
-                        input(type="text" id="searchBar" placeholder="search for your product...")
+                    form(action="../loggedUser" method="GET" class="form")
+                        input(type="text" id="searchBar" placeholder="wyszukaj produkt...")
                         button(type="submit" class="search-button")
-                            img(src='~@/images/search.png' alt='search')
+                            img(src='../images/search.png' alt='search')
                 li
-                    a(href=`/logout`) LOG OUT
+                    a(href="card") KOSZYK
+                li
+                    a(href=`/logout`) WYLOGUJ
             block content

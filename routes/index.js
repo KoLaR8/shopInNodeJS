@@ -24,8 +24,6 @@ router.get('/', function(req, res, next) {
 router.get('/?search', function(req, res, next) {
   console.log(req.query.search)
   var sql = `SELECT product_id, name, price, old, image, category_id FROM products WHERE name LIKE '%${req.query.search}%'; SELECT name FROM categories`;
-  console.log(sql)
-
   connection.query(sql, [2,1], (error, results) =>{
     if(error) throw error;
     res.render('index', {categories: results[1], products: results[0]})

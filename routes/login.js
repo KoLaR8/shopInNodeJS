@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
                     userID: req.body.userID,
                     is_authorized: true
                 });
-            res.render("loggedUser", {products: result[1], categories: result[2]})
+            res.redirect("/loggedUser")
         }
         else{
            res.render('login' ,{message: "login or password is incorrect! Please try again. "});

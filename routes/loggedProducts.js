@@ -12,10 +12,12 @@ var connection = mysql.createConnection({
 })
 
 router.get('/:id', (req, res, next) => {
-    var sql = `SELECT name, price, old, description, image, products.category_id FROM products WHERE product_id = '${req.params.id}';`
+
+    var sql = `SELECT product_id, name, price, old, description, image, products.category_id FROM products WHERE product_id = '${req.params.id}';`
     connection.query(sql, [2,1], (error, results) =>{
+        console.log(req.params.id + results)
         if(error) throw error;
-        res.render('products', {products: results[0]})
+        res.render('loggedProducts', {products: results[0]})
     })
 })
 

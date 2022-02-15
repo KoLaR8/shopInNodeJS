@@ -3,22 +3,22 @@ block content
     div(class="loginPanel" id="loginPanel")
 
         form(action="/login" method="POST")
-            label Already have an account? LOG IN
+            label Masz już konto? ZALOGUJ SIĘ
             br
             label(id="loginNameLabel" for="login") Login:
             br
             input(type="text" id="login" name="login")
             br
-            label(id="loginPasswordLabel" for="password") Password:
+            label(id="loginPasswordLabel" for="password") Hasło:
             br
             input(type="password" id="password" name="password")
             br
-            input(type="submit" id="loginButton" value="LOG IN")
+            input(type="submit" id="loginButton" value="ZALOGUJ SIĘ")
             br
             label(id="wrongPassword")=message
     div(class="loginPanel" id="registerPage")
         form(action="/register" method="POST")
-            label Don't have account yet? SIGN UP
+            label Nie masz jeszcze konta? ZAREJESTRUJ SIĘ
             br
             label(id="RegisterNameLabel" for="Rlogin") Login:
             br
@@ -28,12 +28,12 @@ block content
             br
             input(type="text" id="Rmail" name="Rmail")
             br
-            label(id="RegisterPasswordLabel" for="Rpassword") Enter Password:
+            label(id="RegisterPasswordLabel" for="Rpassword") Hasło:
             br
             input(type="password" id="Rpassword" name ="Rpassword")
             br
-            label(id="RegisterPasswordLabel2" for="Rpassword2") Enter Password again:
+            label(id="RegisterPasswordLabel2" for="Rpassword2") Wprowadz hasłow ponownie:
             br
             input(type="password" id="Rpassword2" name="Rpassword2")
             br
-            input(type="submit" id="RegisterButton" value="SIGN UP")
+            input(type="submit" id="RegisterButton" value="ZAREJESTRUJ SIĘ")
