@@ -1,0 +1,50 @@
+.productsInCard {
+    list-style: none;
+}
+
+.productInCard {
+    border: solid 1px black;
+    border-radius: 15px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.productInCard img{
+    float: left;
+    margin-left: 1%;
+}
+
+.prodctInCardOldPrice{
+    color: red;
+    text-decoration: line-through;
+}
+
+.cardMessage {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.deleteFromCard {
+    margin-left: 50%;
+}
+.deleteFromCard, .goToPayment {
+
+    margin-bottom: 1%;
+    margin-right: 1%;
+    width: 350px;
+    border: solid 1px black;
+    border-radius: 25px;
+    background-color: lawngreen;
+    text-align: center;
+}
+
+.goToPayment {
+    margin-left: 70%;
+}
+.deleteFromCard:hover, .goToPayment:hover {
+    background-color: greenyellow;
+    cursor: pointer;
+}

@@ -22,9 +22,36 @@ router.get('/', function(req, res, next) {
 
     }
     else{
-        res.redirect("/login/noaccess")
+        res.redirect("/login/noacess")
     }
 
 });
+
+router.get('/remove/:id', (req, res) => {
+    if(req.is_authorized){
+        let sql = `DELETE FROM shoppingcardproducts WHERE id_product = '${req.params.id}'`
+        connection.query(sql, (err, result) => {
+            if(err) throw err;
+            res.redirect('../../card');
+        })
+    }
+    else{
+        res.redirect("/login/noacess")
+    }
+})
+
+router.get('/add/:id', (req, res) => {
+    if(req.is_authorized){
+        let user = req.cookies["session"];
+        let sql = `INSERT INTO shoppingcardproducts(id_product, id_user) VALUES ('${req.params.id}', '${user}')`
+        connection.query(sql, (err) => {
+            if(err) throw err;
+            res.redirect('../../card');
+        })
+    }
+    else{
+        res.redirect("/login/noacess")
+    }
+})
 
 module.exports = router;

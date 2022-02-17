@@ -5,7 +5,8 @@ block content
         div#productImage
             img(src="data:image/jpg;base64," + products.image)
         p#productName    #{products.name}
-        button#addToCardButton dodaj do koszyka
+        a(href="/card/add/" + products.product_id style="color: black;")
+            div#addToCardButton dodaj do koszyka
         p#productOldPrice #{products.old}
         p#productPrice #{products.price} zł
 

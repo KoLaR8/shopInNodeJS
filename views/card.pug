@@ -1,10 +1,15 @@
 extend loggedLayout
 block content
+    div.cardMessage TWÓJ KOSZYK
     each val in products
-        li
+        li.productsInCard
             a(href= '/loggedProducts/' + val.product_id style="color:black;")
-                div.productContainer
+                div.productInCard
                     img(src="data:image/jpg;base64," + val.image class="images")
-                    p.productName #{val.name}
-                    p.productOldPrice #{val.old}
-                    p.productPrice #{val.price} zł
+                    p.prodctInCardName #{val.name}
+                    p.prodctInCardOldPrice #{val.old}
+                    p.prodctInCardPrice #{val.price} zł
+                    a(href= 'card/remove/' + val.product_id style="color: black;")
+                        div.deleteFromCard usuń
+    a(href= '' style="color: black")
+        div.goToPayment Przejdź do płatności
