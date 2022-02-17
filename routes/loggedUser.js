@@ -13,21 +13,30 @@ var connection = mysql.createConnection({
 
 
 router.get('/', function(req, res, next) {
-    var sql = "SELECT product_id, name, image, price, category_id FROM products; SELECT name FROM categories";
+    if(req.is_authorized) {
+        var sql = "SELECT product_id, name, image, price, old, category_id FROM products; SELECT name FROM categories";
 
-    connection.query(sql, [2,1], (error, results, fields) =>{
-        if(error) throw error;
-        res.render('loggedUser', {categories: results[1], products: results[0]})
-    })
+        connection.query(sql, [2, 1], (error, results, fields) => {
+            if (error) throw error;
+            res.render('loggedUser', {categories: results[1], products: results[0]})
+        })
+    }
+    else{
+        res.redirect('login/noacess');
+    }
 });
 
 router.get('/?search', function(req, res, next) {
-    console.log(req.query.search)
-    var sql = `SELECT product_id, name, price, old, image, category_id FROM products WHERE name LIKE '%${req.query.search}%'; SELECT name FROM categories`;
-    connection.query(sql, [2,1], (error, results) =>{
-        if(error) throw error;
-        res.render('loggedUser', {categories: results[1], products: results[0]})
-    })
+    if(req.is_authorized) {
+        var sql = `SELECT product_id, name, price, old, image, category_id FROM products WHERE name LIKE '%${req.query.search}%'; SELECT name FROM categories`;
+        connection.query(sql, [2, 1], (error, results) => {
+            if (error) throw error;
+            res.render('loggedUser', {categories: results[1], products: results[0]})
+        })
+    }
+    else{
+        res.redirect('login/noacess');
+    }
 })
 
 module.exports = router;

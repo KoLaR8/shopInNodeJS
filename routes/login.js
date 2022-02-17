@@ -9,7 +9,6 @@ var connection = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'shopWWW',
-    multipleStatements: true
 })
 
 /* GET login page. */
@@ -26,35 +25,40 @@ let password;
 
 
 router.post("/", (req, res) => {
-    connection.query(`SELECT user_id, login, password FROM USERS WHERE login = '${req.body.login}'; SELECT name, price, old, image, category_id FROM products; SELECT name FROM categories`,[3,1], (error, results, fields) =>{
+    connection.query(`SELECT user_id, login, password FROM USERS WHERE login = '${req.body.login}'`, [login, password], (error, results) =>{
         if (error) throw error;
         let result = JSON.parse(JSON.stringify(results));
-        console.log(result[2][0].name);
-        login = result[0][0].login;
-        password = result[0][0].password;
-        postLogin = req.body.login;
-        postPassword = req.body.password;
-        if(login === postLogin && password === postPassword){
-            console.log("it's correct")
-            res.cookie("session", uuid.v4(),
-                {
-                    secure: false,
-                    httpOnly: false,
-                    sameSite: false,
-                    path: '/',
-                    userID: req.body.userID,
-                    is_authorized: true
-                });
-            res.redirect("/loggedUser")
+
+        if(results.length > 0) {
+            login = result[0].login;
+            password = result[0].password;
+            postLogin = req.body.login;
+            postPassword = req.body.password;
+
+                if (login === postLogin && password === postPassword) {
+                    res.cookie("session", result[0].user_id,
+                        {
+                            secure: false,
+                            httpOnly: false,
+                            sameSite: false,
+                            path: '/',
+                            is_authorized: true,
+                            userID: req.body.user_id
+                        })
+                    res.redirect("/loggedUser")
+                } else {
+                    res.render('login', {message: "Nieprawidłowe dane, spróbuj jeszcze raz. "});
+                }
         }
         else{
-           res.render('login' ,{message: "login or password is incorrect! Please try again. "});
+            res.render('login', {message: "Nieprawidłowe dane, spróbuj jeszcze raz. "});
         }
+        res.end()
     })
 
 });
 router.get('/noacess', (req, res, next) => {
-    res.send("Musisz być zalogowany, żeby zobaczyć ten zasób")
+    res.render('login' ,{message: "Musisz być zalogowany żeby zobaczyć ten zasób. "});
 })
 
 module.exports = router;

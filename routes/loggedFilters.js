@@ -12,11 +12,16 @@ var connection = mysql.createConnection({
 })
 
 router.get('/:category', (req, res, next) => {
-    var sql = `SELECT products.product_id, products.name, price, old, image, products.category_id FROM products JOIN categories on products.category_id = categories.category_id WHERE categories.name = '${req.params.category}'; SELECT name FROM categories`;
-    connection.query(sql, [2,1], (error, results) =>{
-        if(error) throw error;
-        res.render('loggedUser', {categories: results[1], products: results[0]})
-    })
+    if(req.is_authorized) {
+        var sql = `SELECT products.product_id, products.name, price, old, image, products.category_id FROM products JOIN categories on products.category_id = categories.category_id WHERE categories.name = '${req.params.category}'; SELECT name FROM categories`;
+        connection.query(sql, [2, 1], (error, results) => {
+            if (error) throw error;
+            res.render('loggedUser', {categories: results[1], products: results[0]})
+        })
+    }
+    else{
+        res.redirect('login/noacess');
+    }
 })
 
 module.exports = router;

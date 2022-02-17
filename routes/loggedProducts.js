@@ -12,13 +12,17 @@ var connection = mysql.createConnection({
 })
 
 router.get('/:id', (req, res, next) => {
-
-    var sql = `SELECT product_id, name, price, old, description, image, products.category_id FROM products WHERE product_id = '${req.params.id}';`
-    connection.query(sql, [2,1], (error, results) =>{
-        console.log(req.params.id + results)
-        if(error) throw error;
-        res.render('loggedProducts', {products: results[0]})
-    })
+    if(req.is_authorized) {
+        var sql = `SELECT product_id, name, price, old, description, image, products.category_id FROM products WHERE product_id = '${req.params.id}';`
+        connection.query(sql, [2, 1], (error, results) => {
+            console.log(req.params.id + results)
+            if (error) throw error;
+            res.render('loggedProducts', {products: results[0]})
+        })
+    }
+    else{
+        res.redirect('login');
+    }
 })
 
 module.exports = router;

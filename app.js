@@ -16,6 +16,7 @@ var filtersRouter = require('./routes/filters');
 var productsRouter = require('./routes/products');
 var loggedproductsRouter = require('./routes/loggedProducts');
 var loggedfiltersRouter = require('./routes/loggedFilters');
+var cardRouter = require('./routes/card');
 
 var app = express();
 
@@ -32,9 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', (req, res, next) => {
 
-  console.log(req.cookies)
   if(req.cookies['session'] !== undefined){
-    console.log(req.cookies)
     req.is_authorized = true;
   }
   else{
@@ -53,6 +52,7 @@ app.use('/filters', filtersRouter );
 app.use('/products', productsRouter );
 app.use('/loggedProducts', loggedproductsRouter );
 app.use('/loggedFilters', loggedfiltersRouter );
+app.use('/card', cardRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
